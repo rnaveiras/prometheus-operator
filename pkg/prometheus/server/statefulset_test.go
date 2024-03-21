@@ -3127,3 +3127,39 @@ func TestStartupProbeTimeoutSeconds(t *testing.T) {
 		require.Equal(t, test.expectedStartupFailureThreshold, sset.Spec.Template.Spec.Containers[0].StartupProbe.FailureThreshold)
 	}
 }
+
+func TestPodTerminationGracePeriodSeconds(t *testing.T) {
+	tests := []struct {
+		name                                  string
+		podTerminationGracePeriodSeconds      *uint64
+		expectedTerminationGracePeriodSeconds int64
+	}{
+		{
+			name:                                  "default value",
+			podTerminationGracePeriodSeconds:      nil,
+			expectedTerminationGracePeriodSeconds: 600,
+		},
+		{
+			name:                                  "non-default value",
+			podTerminationGracePeriodSeconds:      ptr.To(uint64(60)),
+			expectedTerminationGracePeriodSeconds: 60,
+		},
+	}
+
+	for _, tc := range tests {
+		tc := tc
+		t.Run(tc.name, func(t *testing.T) {
+			sset, err := makeStatefulSetFromPrometheus(monitoringv1.Prometheus{
+				ObjectMeta: metav1.ObjectMeta{},
+				Spec: monitoringv1.PrometheusSpec{
+					CommonPrometheusFields: monitoringv1.CommonPrometheusFields{
+						PodTerminationGracePeriodSeconds: tc.podTerminationGracePeriodSeconds,
+					},
+				},
+			})
+			require.NoError(t, err)
+			require.NotNil(t, sset.Spec.Template.Spec.TerminationGracePeriodSeconds)
+			require.Equal(t, tc.expectedTerminationGracePeriodSeconds, *sset.Spec.Template.Spec.TerminationGracePeriodSeconds)
+		})
+	}
+}

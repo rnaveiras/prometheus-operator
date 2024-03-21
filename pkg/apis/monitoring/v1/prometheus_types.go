@@ -686,6 +686,21 @@ type CommonPrometheusFields struct {
 	// +listType=map
 	// +listMapKey=name
 	ScrapeClasses []ScrapeClass `json:"scrapeClasses,omitempty"`
+
+	// Optional duration in seconds the pod needs to terminate gracefully. May be
+	// decreased in delete request. Value must be non-negative integer. The value
+	// zero indicates stop immediately via the kill signal (no opportunity to
+	// shutdown). If this value is nil, the default grace period will be used
+	// instead.
+	// The grace period is the duration in seconds after the processes running in
+	// the pod are sent a termination signal and the time when the processes are
+	// forcibly halted with a kill signal. Set this value longer than the
+	// expected cleanup time for your process.
+	// Default value is set to 10 minutes because Prometheus may take quite long
+	// time to checkpoint existing data before shutdown.
+	// +optional
+	// +kubebuilder:default:=600
+	PodTerminationGracePeriodSeconds *uint64 `json:"podTerminationGracePeriodSeconds,omitempty"`
 }
 
 // +kubebuilder:validation:Enum=HTTP;ProcessSignal

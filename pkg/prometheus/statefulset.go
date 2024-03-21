@@ -514,3 +514,15 @@ func GetStatupProbePeriodSecondsAndFailureThreshold(cfp monitoringv1.CommonProme
 
 	return int32(startupPeriodSeconds), int32(startupFailureThreshold)
 }
+
+func GetPodTerminationGracePeriodSeconds(cfp monitoringv1.CommonPrometheusFields) *int64 {
+	// Prometheus may take quite long to checkpoint existing data before shutdown.
+	// Allow up to 10 minutes for clean termination.
+	var podTerminationGracePeriodSeconds int64 = 600
+
+	if cfp.PodTerminationGracePeriodSeconds != nil {
+		podTerminationGracePeriodSeconds = int64(*cfp.PodTerminationGracePeriodSeconds)
+	}
+
+	return ptr.To(podTerminationGracePeriodSeconds)
+}
