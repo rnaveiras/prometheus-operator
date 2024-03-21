@@ -783,7 +783,7 @@ func makeStatefulSetSpec(logger log.Logger, a *monitoringv1.Alertmanager, config
 				AutomountServiceAccountToken:  a.Spec.AutomountServiceAccountToken,
 				NodeSelector:                  a.Spec.NodeSelector,
 				PriorityClassName:             a.Spec.PriorityClassName,
-				TerminationGracePeriodSeconds: ptr.To(int64(120)),
+				TerminationGracePeriodSeconds: getPodTerminationGracePeriodSeconds(&a.Spec),
 				InitContainers:                initContainers,
 				Containers:                    containers,
 				Volumes:                       volumes,
@@ -843,4 +843,15 @@ func filter(strings []string, f func(string) bool) []string {
 		}
 	}
 	return filteredStrings
+}
+
+func getPodTerminationGracePeriodSeconds(spec *monitoringv1.AlertmanagerSpec) *int64 {
+	// default 120 seconds
+	var podTerminationGracePeriodSeconds int64 = 120
+
+	if spec.PodTerminationGracePeriodSeconds != nil {
+		podTerminationGracePeriodSeconds = int64(*spec.PodTerminationGracePeriodSeconds)
+	}
+
+	return ptr.To(podTerminationGracePeriodSeconds)
 }
