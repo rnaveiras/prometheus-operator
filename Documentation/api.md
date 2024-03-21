@@ -770,6 +770,27 @@ that this behaviour may break at any time without notice.</p>
 <p>It requires Alertmanager &gt;= 0.27.0.</p>
 </td>
 </tr>
+<tr>
+<td>
+<code>podTerminationGracePeriodSeconds</code><br/>
+<em>
+uint64
+</em>
+</td>
+<td>
+<em>(Optional)</em>
+<p>Optional duration in seconds the pod needs to terminate gracefully. May be
+decreased in delete request. Value must be non-negative integer. The value
+zero indicates stop immediately via the kill signal (no opportunity to
+shutdown). If this value is nil, the default grace period will be used
+instead.
+The grace period is the duration in seconds after the processes running in
+the pod are sent a termination signal and the time when the processes are
+forcibly halted with a kill signal. Set this value longer than the
+expected cleanup time for your process.
+Default value is set to 120 (seconds).</p>
+</td>
+</tr>
 </table>
 </td>
 </tr>
@@ -5457,6 +5478,27 @@ Enabling features which are disabled by default is entirely outside the
 scope of what the maintainers will support and by doing so, you accept
 that this behaviour may break at any time without notice.</p>
 <p>It requires Alertmanager &gt;= 0.27.0.</p>
+</td>
+</tr>
+<tr>
+<td>
+<code>podTerminationGracePeriodSeconds</code><br/>
+<em>
+uint64
+</em>
+</td>
+<td>
+<em>(Optional)</em>
+<p>Optional duration in seconds the pod needs to terminate gracefully. May be
+decreased in delete request. Value must be non-negative integer. The value
+zero indicates stop immediately via the kill signal (no opportunity to
+shutdown). If this value is nil, the default grace period will be used
+instead.
+The grace period is the duration in seconds after the processes running in
+the pod are sent a termination signal and the time when the processes are
+forcibly halted with a kill signal. Set this value longer than the
+expected cleanup time for your process.
+Default value is set to 120 (seconds).</p>
 </td>
 </tr>
 </tbody>

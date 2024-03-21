@@ -74,6 +74,7 @@ type AlertmanagerSpecApplyConfiguration struct {
 	AlertmanagerConfiguration           *AlertmanagerConfigurationApplyConfiguration         `json:"alertmanagerConfiguration,omitempty"`
 	AutomountServiceAccountToken        *bool                                                `json:"automountServiceAccountToken,omitempty"`
 	EnableFeatures                      []string                                             `json:"enableFeatures,omitempty"`
+	PodTerminationGracePeriodSeconds    *uint64                                              `json:"podTerminationGracePeriodSeconds,omitempty"`
 }
 
 // AlertmanagerSpecApplyConfiguration constructs an declarative configuration of the AlertmanagerSpec type for use with
@@ -504,5 +505,13 @@ func (b *AlertmanagerSpecApplyConfiguration) WithEnableFeatures(values ...string
 	for i := range values {
 		b.EnableFeatures = append(b.EnableFeatures, values[i])
 	}
+	return b
+}
+
+// WithPodTerminationGracePeriodSeconds sets the PodTerminationGracePeriodSeconds field in the declarative configuration to the given value
+// and returns the receiver, so that objects can be built by chaining "With" function invocations.
+// If called multiple times, the PodTerminationGracePeriodSeconds field is set to the value of the last call.
+func (b *AlertmanagerSpecApplyConfiguration) WithPodTerminationGracePeriodSeconds(value uint64) *AlertmanagerSpecApplyConfiguration {
+	b.PodTerminationGracePeriodSeconds = &value
 	return b
 }
