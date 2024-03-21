@@ -2711,6 +2711,28 @@ in a breaking way.</p>
 </tr>
 <tr>
 <td>
+<code>podTerminationGracePeriodSeconds</code><br/>
+<em>
+uint64
+</em>
+</td>
+<td>
+<em>(Optional)</em>
+<p>Optional duration in seconds the pod needs to terminate gracefully. May be
+decreased in delete request. Value must be non-negative integer. The value
+zero indicates stop immediately via the kill signal (no opportunity to
+shutdown). If this value is nil, the default grace period will be used
+instead.
+The grace period is the duration in seconds after the processes running in
+the pod are sent a termination signal and the time when the processes are
+forcibly halted with a kill signal. Set this value longer than the
+expected cleanup time for your process.
+Default value is set to 600 (seconds) because Prometheus may take quite long
+time to checkpoint existing data before shutdown.</p>
+</td>
+</tr>
+<tr>
+<td>
 <code>baseImage</code><br/>
 <em>
 string
@@ -7229,6 +7251,28 @@ PodMonitors, ServiceMonitors, Probes and ScrapeConfigs.</p>
 in a breaking way.</p>
 </td>
 </tr>
+<tr>
+<td>
+<code>podTerminationGracePeriodSeconds</code><br/>
+<em>
+uint64
+</em>
+</td>
+<td>
+<em>(Optional)</em>
+<p>Optional duration in seconds the pod needs to terminate gracefully. May be
+decreased in delete request. Value must be non-negative integer. The value
+zero indicates stop immediately via the kill signal (no opportunity to
+shutdown). If this value is nil, the default grace period will be used
+instead.
+The grace period is the duration in seconds after the processes running in
+the pod are sent a termination signal and the time when the processes are
+forcibly halted with a kill signal. Set this value longer than the
+expected cleanup time for your process.
+Default value is set to 600 (seconds) because Prometheus may take quite long
+time to checkpoint existing data before shutdown.</p>
+</td>
+</tr>
 </tbody>
 </table>
 <h3 id="monitoring.coreos.com/v1.Condition">Condition
@@ -11327,6 +11371,28 @@ If set, the value should be greater than 60 (seconds). Otherwise it will be equa
 PodMonitors, ServiceMonitors, Probes and ScrapeConfigs.</p>
 <p>This is an <em>experimental feature</em>, it may change in any upcoming release
 in a breaking way.</p>
+</td>
+</tr>
+<tr>
+<td>
+<code>podTerminationGracePeriodSeconds</code><br/>
+<em>
+uint64
+</em>
+</td>
+<td>
+<em>(Optional)</em>
+<p>Optional duration in seconds the pod needs to terminate gracefully. May be
+decreased in delete request. Value must be non-negative integer. The value
+zero indicates stop immediately via the kill signal (no opportunity to
+shutdown). If this value is nil, the default grace period will be used
+instead.
+The grace period is the duration in seconds after the processes running in
+the pod are sent a termination signal and the time when the processes are
+forcibly halted with a kill signal. Set this value longer than the
+expected cleanup time for your process.
+Default value is set to 600 (seconds) because Prometheus may take quite long
+time to checkpoint existing data before shutdown.</p>
 </td>
 </tr>
 <tr>
@@ -17252,6 +17318,28 @@ PodMonitors, ServiceMonitors, Probes and ScrapeConfigs.</p>
 in a breaking way.</p>
 </td>
 </tr>
+<tr>
+<td>
+<code>podTerminationGracePeriodSeconds</code><br/>
+<em>
+uint64
+</em>
+</td>
+<td>
+<em>(Optional)</em>
+<p>Optional duration in seconds the pod needs to terminate gracefully. May be
+decreased in delete request. Value must be non-negative integer. The value
+zero indicates stop immediately via the kill signal (no opportunity to
+shutdown). If this value is nil, the default grace period will be used
+instead.
+The grace period is the duration in seconds after the processes running in
+the pod are sent a termination signal and the time when the processes are
+forcibly halted with a kill signal. Set this value longer than the
+expected cleanup time for your process.
+Default value is set to 600 (seconds) because Prometheus may take quite long
+time to checkpoint existing data before shutdown.</p>
+</td>
+</tr>
 </table>
 </td>
 </tr>
@@ -22396,6 +22484,28 @@ If set, the value should be greater than 60 (seconds). Otherwise it will be equa
 PodMonitors, ServiceMonitors, Probes and ScrapeConfigs.</p>
 <p>This is an <em>experimental feature</em>, it may change in any upcoming release
 in a breaking way.</p>
+</td>
+</tr>
+<tr>
+<td>
+<code>podTerminationGracePeriodSeconds</code><br/>
+<em>
+uint64
+</em>
+</td>
+<td>
+<em>(Optional)</em>
+<p>Optional duration in seconds the pod needs to terminate gracefully. May be
+decreased in delete request. Value must be non-negative integer. The value
+zero indicates stop immediately via the kill signal (no opportunity to
+shutdown). If this value is nil, the default grace period will be used
+instead.
+The grace period is the duration in seconds after the processes running in
+the pod are sent a termination signal and the time when the processes are
+forcibly halted with a kill signal. Set this value longer than the
+expected cleanup time for your process.
+Default value is set to 600 (seconds) because Prometheus may take quite long
+time to checkpoint existing data before shutdown.</p>
 </td>
 </tr>
 </tbody>
